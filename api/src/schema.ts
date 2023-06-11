@@ -32,7 +32,7 @@ const Query = objectType({
       },
       resolve: async (_parent, args, context, _info) => {
         const event = await context.prisma.event.findUnique({
-          where: { event_id: args.id || undefined },
+          where: { id: args.id || undefined },
         })
         return event
       },
@@ -77,7 +77,7 @@ const Mutation = objectType({
 const UserType = objectType({
   name: User.$name,
   definition(t) {
-    t.field(User.user_id)
+    t.field(User.id)
     t.field(User.email)
     t.field(User.password)
     t.field(User.username)
@@ -95,7 +95,7 @@ const UserType = objectType({
 const EventType = objectType({
   name: Event.$name,
   definition(t) {
-    t.field(Event.event_id)
+    t.field(Event.id)
     t.field(Event.created_at)
     t.field(Event.title)
     t.field(Event.content)
@@ -150,7 +150,7 @@ const SortOrder = enumType({
 const UserUniqueInput = inputObjectType({
   name: 'UserUniqueInput',
   definition(t) {
-    t.int('user_id')
+    t.int('id')
     t.string('email')
   },
 })

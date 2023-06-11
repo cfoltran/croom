@@ -12,7 +12,7 @@ datasource db {
 }
 
 model User {
-  user_id    Int       @id @default(autoincrement())
+  id    Int       @id @default(autoincrement())
   email      String    @unique
   username   String    @unique
   firstname  String
@@ -28,21 +28,21 @@ model User {
 
 model Follows {
   created_at   DateTime @default(now())
-  follower     User @relation("follower", fields: [follower_id], references: [user_id])
+  follower     User @relation("follower", fields: [follower_id], references: [id])
   follower_id  Int
-  following    User @relation("following", fields: [following_id], references: [user_id])
+  following    User @relation("following", fields: [following_id], references: [id])
   following_id Int
 
   @@id([follower_id, following_id])
 }
 
 model Event {
-  event_id   Int      @id @default(autoincrement())
+  id   Int      @id @default(autoincrement())
   created_at DateTime @default(now())
   title      String
   content    String
   published  Boolean  @default(false)
-  author     User     @relation(fields: [author_id], references: [user_id])
+  author     User     @relation(fields: [author_id], references: [id])
   author_id  Int
   visibility EnumVisibility @default(PUBLIC)
 }
