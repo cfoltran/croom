@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  postgres:
+    container_name: croom-pg
+    image: postgres:13.1
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-q", "-d", "postgres", "-U", "root" ]
+      timeout: 45s
+      interval: 10s
+      retries: 10
+    restart: always
+    volumes:
+      - pgdata:/var/lib/postgresql/data # keep data persistant
+    ports:
+      - "5432:5432"
+    environment:
+        - POSTGRES_USER=root
+        - POSTGRES_PASSWORD=password
+        - POSTGRES_DB=croom_db
+
+volumes:
+  pgdata:
