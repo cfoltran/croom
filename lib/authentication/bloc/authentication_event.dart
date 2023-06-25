@@ -2,7 +2,6 @@ import 'package:authentication_repository/authentication_repository.dart';
 
 part of 'authentication_bloc.dart';
 
-
 sealed class AuthenticationEvent {
   const AuthenticationEvent();
 }
