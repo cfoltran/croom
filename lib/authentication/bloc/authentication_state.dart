@@ -1,9 +1,4 @@
-import 'package:authentication_repository/authentication_repository.dart';
-import 'package:equatable/equatable.dart';
-import 'package:user_repository/user_repository.dart';
-
 part of 'authentication_bloc.dart';
-
 
 class AuthenticationState extends Equatable {
   const AuthenticationState._({

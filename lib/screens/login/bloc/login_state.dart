@@ -1,10 +1,4 @@
-import 'package:equatable/equatable.dart';
-import 'package:formz/formz.dart';
-import 'package:music_room/screens/login/models/password.dart';
-import 'package:music_room/screens/login/models/username.dart';
-
 part of 'login_bloc.dart';
-
 
 final class LoginState extends Equatable {
   const LoginState({

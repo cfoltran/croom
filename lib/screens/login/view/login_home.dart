@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:music_room/screens/login/view/login_page.dart';
+import 'package:music_room/screens/signup/view/email_form.dart';
 
 class LoginHomePage extends StatelessWidget {
   const LoginHomePage({Key? key});
@@ -26,7 +27,9 @@ class LoginHomePage extends StatelessWidget {
             margin: const EdgeInsets.all(16.0),
             child: Column(children: [
               ElevatedButton(
-                  onPressed: () => {},
+                  onPressed: () => {
+                        Navigator.of(context).push<void>(EmailForm.route()),
+                      },
                   style: ElevatedButton.styleFrom(
                       minimumSize: const Size(double.infinity, 50)),
                   child: const Text('Free sign up')),
