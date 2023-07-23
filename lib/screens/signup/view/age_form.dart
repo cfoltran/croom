@@ -39,7 +39,12 @@ class _NextButton extends StatelessWidget {
       builder: (context, state) {
         return ElevatedButton(
           key: const Key('Ageform_next_raisedButton'),
-          onPressed: state.age.isValid ? () {} : null,
+          onPressed: state.age.isValid
+              ? () {
+                  print(state.age.isValid);
+                  context.read<SignUpBloc>().add(const SignUpSubmitted());
+                }
+              : null,
           child: const Text('Continue'),
         );
       },

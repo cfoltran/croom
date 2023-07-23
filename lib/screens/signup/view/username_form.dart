@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:music_room/common/common_page.dart';
 import 'package:music_room/screens/signup/bloc/signup_bloc.dart';
-import 'package:music_room/screens/signup/view/birthday_form.dart';
+import 'package:music_room/screens/signup/view/age_form.dart';
 
 class UsernameForm extends StatelessWidget {
   const UsernameForm({Key? key}) : super(key: key);

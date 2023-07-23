@@ -42,3 +42,7 @@ final class SignUpAgeChanged extends SignUpEvent {
   @override
   List<Object> get props => [age];
 }
+
+final class SignUpSubmitted extends SignUpEvent {
+  const SignUpSubmitted();
+}
