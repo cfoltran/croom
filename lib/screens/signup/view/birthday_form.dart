@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:music_room/common/common_page.dart';
 import 'package:music_room/screens/signup/bloc/signup_bloc.dart';
-import 'package:music_room/screens/signup/view/birthday_form.dart';
 
-class UsernameForm extends StatelessWidget {
-  const UsernameForm({Key? key}) : super(key: key);
+class AgeForm extends StatelessWidget {
+  const AgeForm({Key? key}) : super(key: key);
 
   static Route<void> route() {
-    return MaterialPageRoute<void>(builder: (_) => const UsernameForm());
+    return MaterialPageRoute<void>(builder: (_) => const AgeForm());
   }
 
   @override
@@ -18,9 +18,9 @@ class UsernameForm extends StatelessWidget {
       child: CommonPage(
         appBar: AppBar(title: const Text('Create an account')),
         body: Column(children: [
-          const Text('Enter a Username'),
+          const Text('Enter a Age'),
           const SizedBox(height: 5.0),
-          _UsernameForm(),
+          _AgeForm(),
           const SizedBox(height: 10.0),
           const _NextButton(),
         ]),
@@ -35,15 +35,11 @@ class _NextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SignUpBloc, SignUpState>(
-      buildWhen: (previous, current) => previous.username != current.username,
+      buildWhen: (previous, current) => previous.age != current.age,
       builder: (context, state) {
         return ElevatedButton(
-          key: const Key('Usernameform_next_raisedButton'),
-          onPressed: state.username.isValid
-              ? () {
-                  Navigator.of(context).push<void>(AgeForm.route());
-                }
-              : null,
+          key: const Key('Ageform_next_raisedButton'),
+          onPressed: state.age.isValid ? () {} : null,
           child: const Text('Continue'),
         );
       },
@@ -51,20 +47,24 @@ class _NextButton extends StatelessWidget {
   }
 }
 
-class _UsernameForm extends StatelessWidget {
+class _AgeForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SignUpBloc, SignUpState>(
-      buildWhen: (previous, current) => previous.username != current.username,
+      buildWhen: (previous, current) => previous.age != current.age,
       builder: (context, state) {
         return TextField(
-          key: const Key('Usernameform_UsernameInput_textField'),
-          onChanged: (username) =>
-              context.read<SignUpBloc>().add(SignUpUsernameChanged(username)),
+          key: const Key('Ageform_AgeInput_textField'),
+          onChanged: (age) =>
+              context.read<SignUpBloc>().add(SignUpAgeChanged(age)),
+          keyboardType: TextInputType.number,
+          maxLength: 2,
+          inputFormatters: <TextInputFormatter>[
+            FilteringTextInputFormatter.digitsOnly
+          ],
           decoration: InputDecoration(
-            labelText: 'Username',
-            errorText:
-                state.username.displayError != null ? 'Invalid Username' : null,
+            labelText: 'Age',
+            errorText: state.age.displayError != null ? 'Invalid Age' : null,
             filled: true,
             fillColor: Colors.grey[200],
             border: InputBorder.none,

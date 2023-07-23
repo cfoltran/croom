@@ -4,7 +4,7 @@ final class SignUpState extends Equatable {
   final FormzSubmissionStatus status;
   final Email email;
   final Username username;
-  // final Birthdate birthdate;
+  final Age age;
   final Password password;
   final bool isValid;
 
@@ -12,7 +12,7 @@ final class SignUpState extends Equatable {
     this.status = FormzSubmissionStatus.initial,
     this.email = const Email.pure(),
     this.username = const Username.pure(),
-    // this.birthdate = const Birthdate.pure(),
+    this.age = const Age.pure(),
     this.password = const Password.pure(),
     this.isValid = false,
   });
@@ -21,16 +21,15 @@ final class SignUpState extends Equatable {
     FormzSubmissionStatus? status,
     Email? email,
     Username? username,
-    // Birthdate? birthdate,
     Password? password,
-    Password? confirmPassword,
+    Age? age,
     bool? isValid,
   }) {
     return SignUpState(
       status: status ?? this.status,
       email: email ?? this.email,
       username: username ?? this.username,
-      // birthdate: birthdate ?? this.birthdate,
+      age: age ?? this.age,
       password: password ?? this.password,
       isValid: isValid ?? this.isValid,
     );
@@ -41,7 +40,7 @@ final class SignUpState extends Equatable {
         status,
         email,
         username,
-        // birthdate,
+        age,
         password,
       ];
 }

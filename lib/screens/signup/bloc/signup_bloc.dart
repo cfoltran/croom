@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
+import 'package:music_room/models/age.dart';
 import 'package:music_room/models/email.dart';
 import 'package:music_room/models/password.dart';
 import 'package:music_room/models/username.dart';
@@ -13,6 +14,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     on<SignUpEmailChanged>(_onEmailChanged);
     on<SignUpUsernameChanged>(_onUsernameChanged);
     on<SignUpPasswordChanged>(_onPasswordChanged);
+    on<SignUpAgeChanged>(_onAgeChanged);
     // on<SignUpSubmitted>(_onSubmitted);
   }
 
@@ -34,7 +36,6 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     final username = Username.dirty(event.username);
     emit(state.copyWith(
       username: username,
-      // status: Formz.validate([username, state.password, state.name]),
     ));
   }
 
@@ -46,6 +47,17 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     emit(state.copyWith(
       password: password,
       isValid: Formz.validate([state.password]),
+    ));
+  }
+
+  void _onAgeChanged(
+    SignUpAgeChanged event,
+    Emitter<SignUpState> emit,
+  ) {
+    final age = Age.dirty(int.parse(event.age));
+    emit(state.copyWith(
+      age: age,
+      isValid: Formz.validate([state.age]),
     ));
   }
 }

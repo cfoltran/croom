@@ -33,3 +33,12 @@ final class SignUpPasswordChanged extends SignUpEvent {
   @override
   List<Object> get props => [password];
 }
+
+final class SignUpAgeChanged extends SignUpEvent {
+  const SignUpAgeChanged(this.age);
+
+  final String age;
+
+  @override
+  List<Object> get props => [age];
+}
