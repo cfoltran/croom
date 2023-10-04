@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:music_room/common/app_text_field.dart';
 import 'package:music_room/common/common_page.dart';
 import 'package:music_room/screens/signup/bloc/signup_bloc.dart';
 import 'package:music_room/screens/signup/view/password_form.dart';
@@ -18,10 +19,12 @@ class EmailForm extends StatelessWidget {
         child: CommonPage(
           appBar: AppBar(title: const Text('Create an account')),
           body: Column(children: [
-            const Text('What is your email address?'),
-            const SizedBox(height: 5.0),
+            Expanded(child: Container()),
+            const Text('What is your email address?',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+            const SizedBox(height: 32),
             _EmailForm(),
-            const SizedBox(height: 10.0),
+            const SizedBox(height: 32),
             const _NextButton(),
           ]),
         ));
@@ -54,20 +57,12 @@ class _EmailForm extends StatelessWidget {
     return BlocBuilder<SignUpBloc, SignUpState>(
       buildWhen: (previous, current) => previous.email != current.email,
       builder: (context, state) {
-        return TextField(
+        return AppTextField(
           key: const Key('emailform_emailInput_textField'),
           onChanged: (email) =>
               context.read<SignUpBloc>().add(SignUpEmailChanged(email)),
-          decoration: InputDecoration(
-            labelText: 'Email',
-            errorText:
-                state.email.displayError != null ? 'Invalid email' : null,
-            filled: true,
-            fillColor: Colors.grey[200],
-            border: InputBorder.none,
-            contentPadding:
-                const EdgeInsets.symmetric(vertical: 5.0, horizontal: 16.0),
-          ),
+          hintText: 'Email',
+          autofocus: true,
         );
       },
     );

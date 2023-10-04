@@ -62,9 +62,7 @@ class _AppViewState extends State<AppView> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Croom',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color.fromARGB(255, 166, 141, 207)),
+      theme: ThemeData.dark(
         useMaterial3: true,
       ),
       navigatorKey: _navigatorKey,

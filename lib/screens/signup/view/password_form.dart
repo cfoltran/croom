@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:music_room/common/app_text_field.dart';
 import 'package:music_room/common/common_page.dart';
 import 'package:music_room/screens/signup/bloc/signup_bloc.dart';
 import 'package:music_room/screens/signup/view/username_form.dart';
@@ -18,10 +19,12 @@ class PasswordForm extends StatelessWidget {
       child: CommonPage(
         appBar: AppBar(title: const Text('Create an account')),
         body: Column(children: [
-          const Text('Enter a password'),
-          const SizedBox(height: 5.0),
+          Expanded(child: Container()),
+          const Text('Enter a password',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+          const SizedBox(height: 32),
           _PasswordForm(),
-          const SizedBox(height: 10.0),
+          const SizedBox(height: 32),
           const _NextButton(),
         ]),
       ),
@@ -55,21 +58,13 @@ class _PasswordForm extends StatelessWidget {
     return BlocBuilder<SignUpBloc, SignUpState>(
       buildWhen: (previous, current) => previous.password != current.password,
       builder: (context, state) {
-        return TextField(
+        return AppTextField(
           key: const Key('Passwordform_PasswordInput_textField'),
+          hintText: 'Password',
           onChanged: (password) =>
               context.read<SignUpBloc>().add(SignUpPasswordChanged(password)),
           obscureText: true,
-          decoration: InputDecoration(
-            labelText: 'Password',
-            errorText:
-                state.password.displayError != null ? 'Invalid Password' : null,
-            filled: true,
-            fillColor: Colors.grey[200],
-            border: InputBorder.none,
-            contentPadding:
-                const EdgeInsets.symmetric(vertical: 5.0, horizontal: 16.0),
-          ),
+          autofocus: true,
         );
       },
     );
