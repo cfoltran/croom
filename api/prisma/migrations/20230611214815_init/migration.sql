@@ -6,10 +6,8 @@ CREATE TABLE "User" (
     "user_id" SERIAL NOT NULL,
     "email" TEXT NOT NULL,
     "username" TEXT NOT NULL,
-    "firstname" TEXT NOT NULL,
-    "lastname" TEXT NOT NULL,
     "password" TEXT NOT NULL,
-    "birthdate" TIMESTAMP(3) NOT NULL,
+    "age" INTEGER NOT NULL,
     "confirmed" BOOLEAN NOT NULL DEFAULT false,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 

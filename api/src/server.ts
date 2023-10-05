@@ -57,7 +57,7 @@ export function startServer() {
 
   try {
     const port = process.env.PORT ?? 8000
-    server.listen({ port })
+    server.listen({ port: +port, host: '0.0.0.0' })
   } catch (err) {
     server.log.error(err)
     process.exit(1)

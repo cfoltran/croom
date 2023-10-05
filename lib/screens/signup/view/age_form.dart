@@ -20,7 +20,7 @@ class AgeForm extends StatelessWidget {
         appBar: AppBar(title: const Text('Create an account')),
         body: Column(children: [
           Expanded(child: Container()),
-          const Text('Enter a Age',
+          const Text('What is your age?',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
           const SizedBox(height: 32),
           _AgeForm(),
@@ -60,6 +60,7 @@ class _AgeForm extends StatelessWidget {
       builder: (context, state) {
         return AppTextField(
           key: const Key('Ageform_AgeInput_textField'),
+          autofocus: true,
           onChanged: (age) =>
               context.read<SignUpBloc>().add(SignUpAgeChanged(age)),
           keyboardType: TextInputType.number,

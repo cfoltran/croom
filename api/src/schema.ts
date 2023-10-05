@@ -59,9 +59,7 @@ const Mutation = objectType({
             data: {
               username: args.data.username,
               email: args.data.email,
-              firstname: args.data.firstname,
-              lastname: args.data.lastname,
-              birthdate: args.data.birthdate,
+              age: args.data.age,
               password: password,
             },
           })
@@ -81,9 +79,7 @@ const UserType = objectType({
     t.field(User.email)
     t.field(User.password)
     t.field(User.username)
-    t.field(User.firstname)
-    t.field(User.lastname)
-    t.field(User.birthdate)
+    t.field(User.age)
     t.field(User.confirmed)
     t.field(User.created_at)
     t.field(User.events)
@@ -117,9 +113,7 @@ const UserCreateInput = inputObjectType({
     t.nonNull.string('email')
     t.nonNull.string('password')
     t.nonNull.string('username')
-    t.nonNull.string('firstname')
-    t.nonNull.string('lastname')
-    t.nonNull.date('birthdate')
+    t.nonNull.int('age')
   },
 })
 

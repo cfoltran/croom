@@ -20,7 +20,7 @@ class PasswordForm extends StatelessWidget {
         appBar: AppBar(title: const Text('Create an account')),
         body: Column(children: [
           Expanded(child: Container()),
-          const Text('Enter a password',
+          const Text('Type a secret password 🤫',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
           const SizedBox(height: 32),
           _PasswordForm(),

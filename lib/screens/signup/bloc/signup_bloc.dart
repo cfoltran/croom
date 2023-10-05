@@ -66,23 +66,17 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     SignUpSubmitted event,
     Emitter<SignUpState> emit,
   ) async {
-    print(state.isValid);
-
-    if (state.isValid || true) {
+    if (state.age.isValid) {
       emit(state.copyWith(status: FormzSubmissionStatus.inProgress));
       try {
-        final res = await UserService.i.createUser(
+        await UserService.i.createUser(
           email: state.email.value,
           password: state.password.value,
           username: state.username.value,
-          firstname: 'firstname',
-          lastname: 'lastname',
-          birthdate: '14/02/1998',
+          age: state.age.value,
         );
-        print('🔥');
-        print(res);
         emit(state.copyWith(status: FormzSubmissionStatus.success));
-      } catch (_) {
+      } catch (error) {
         emit(state.copyWith(status: FormzSubmissionStatus.failure));
       }
     }

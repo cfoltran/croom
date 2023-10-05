@@ -16,6 +16,7 @@
     "migrate:reset": "prisma migrate reset"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/node": "^20.3.0",
     "prisma": "^4.15.0",
     "ts-node": "^10.9.1",

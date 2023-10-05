@@ -30,11 +30,9 @@ Exemple of mutation:
 ```graphql
 mutation signupUser{
   signupUser(data: {
-    birthdate: "1995-12-03T10:15:30Z"
+    age: "14"
     email: "test@test.com"
-    firstname: "test"
     password: "test"
-    lastname: "test"
     username: "test"
   })
   {

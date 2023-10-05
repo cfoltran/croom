@@ -8,7 +8,7 @@ class UserService {
   static UserService get i => _instance;
 
   final GraphQLClient _client = GraphQLClient(
-    link: HttpLink('http://localhost:8000/graphql/'),
+    link: HttpLink('http://192.168.1.161:8000/graphql'),
     cache: GraphQLCache(),
   );
 
@@ -16,38 +16,30 @@ class UserService {
     required String email,
     required String password,
     required String username,
-    required String firstname,
-    required String lastname,
-    required String birthdate,
+    required int age,
   }) {
     return _client.mutate(
       MutationOptions(
-        document: gql('''
-          mutation signupUser($email: String!, $password: String!, $username: String!, $firstname: String!, $lastname: String!, $birthdate: DateTime!) {
+        document: gql(r"""
+          mutation signupUser($email: String!, $password: String!, $username: String!, $age: Int!) {
             signupUser(data: {
               email: $email,
               password: $password, 
               username: $username, 
-              firstname: $firstname, 
-              lastname: $lastname, 
-              birthdate: $birthdate
+              age: $age
             }) {
               id
               email
               username
-              firstname
-              lastname
-              birthdate
+              age
             }
           }
-        '''),
+        """),
         variables: {
           'email': email,
           'password': password,
           'username': username,
-          'firstname': firstname,
-          'lastname': lastname,
-          'birthdate': birthdate,
+          'age': age
         },
       ),
     );

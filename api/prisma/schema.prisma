@@ -15,10 +15,8 @@ model User {
   id    Int       @id @default(autoincrement())
   email      String    @unique
   username   String    @unique
-  firstname  String
-  lastname   String
   password   String
-  birthdate  DateTime
+  age        Int  
   confirmed  Boolean @default(false)
   created_at DateTime @default(now())
   events     Event[]

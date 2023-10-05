@@ -20,7 +20,7 @@ class UsernameForm extends StatelessWidget {
         appBar: AppBar(title: const Text('Create an account')),
         body: Column(children: [
           Expanded(child: Container()),
-          const Text('Enter a Username',
+          const Text('Choose your username 🙋‍♂️',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
           const SizedBox(height: 32),
           _UsernameForm(),
