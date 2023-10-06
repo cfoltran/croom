@@ -58,6 +58,9 @@ class _UsernameForm extends StatelessWidget {
               context.read<SignUpBloc>().add(SignUpUsernameChanged(username)),
           hintText: 'Username',
           autofocus: true,
+          errorText: state.username.isValid
+              ? null
+              : 'Username must be at least 3 characters',
         );
       },
     );

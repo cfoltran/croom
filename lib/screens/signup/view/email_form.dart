@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:music_room/common/app_text_field.dart';
 import 'package:music_room/screens/signup/bloc/signup_bloc.dart';
-import 'package:music_room/screens/signup/view/password_form.dart';
 
 class EmailForm extends StatelessWidget {
   const EmailForm({Key? key}) : super(key: key);
@@ -59,6 +58,7 @@ class _EmailForm extends StatelessWidget {
               context.read<SignUpBloc>().add(SignUpEmailChanged(email)),
           hintText: 'Email',
           autofocus: true,
+          errorText: state.email.isValid ? null : 'Invalid email address',
         );
       },
     );

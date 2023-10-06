@@ -57,6 +57,9 @@ class _PasswordForm extends StatelessWidget {
               context.read<SignUpBloc>().add(SignUpPasswordChanged(password)),
           obscureText: true,
           autofocus: true,
+          errorText: state.password.isValid
+              ? null
+              : 'Password must be at least 6 characters',
         );
       },
     );
