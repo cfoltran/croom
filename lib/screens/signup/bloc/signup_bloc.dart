@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
@@ -11,12 +12,25 @@ part 'signup_event.dart';
 part 'signup_state.dart';
 
 class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
+  PageController pageController = PageController(initialPage: 0);
+
   SignUpBloc() : super(const SignUpState()) {
     on<SignUpEmailChanged>(_onEmailChanged);
     on<SignUpUsernameChanged>(_onUsernameChanged);
     on<SignUpPasswordChanged>(_onPasswordChanged);
     on<SignUpAgeChanged>(_onAgeChanged);
     on<SignUpSubmitted>(_onSubmitted);
+    on<SignUpNextPage>(_onNextPage);
+  }
+
+  void _onNextPage(
+    SignUpNextPage event,
+    Emitter<SignUpState> emit,
+  ) {
+    pageController.nextPage(
+      duration: const Duration(milliseconds: 400),
+      curve: Curves.easeInOut,
+    );
   }
 
   void _onEmailChanged(
@@ -37,6 +51,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     final username = Username.dirty(event.username);
     emit(state.copyWith(
       username: username,
+      isValid: Formz.validate([state.username]),
     ));
   }
 
@@ -56,6 +71,8 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     Emitter<SignUpState> emit,
   ) {
     final age = Age.dirty(int.parse(event.age));
+    print('state: $state');
+
     emit(state.copyWith(
       age: age,
       isValid: Formz.validate([state.age]),

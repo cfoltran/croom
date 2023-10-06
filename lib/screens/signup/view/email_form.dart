@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:music_room/common/app_text_field.dart';
-import 'package:music_room/common/common_page.dart';
 import 'package:music_room/screens/signup/bloc/signup_bloc.dart';
 import 'package:music_room/screens/signup/view/password_form.dart';
 
@@ -14,20 +13,17 @@ class EmailForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-        create: (_) => SignUpBloc(),
-        child: CommonPage(
-          appBar: AppBar(title: const Text('Create an account')),
-          body: Column(children: [
-            Expanded(child: Container()),
-            const Text('What is your email address?',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-            const SizedBox(height: 32),
-            _EmailForm(),
-            const SizedBox(height: 32),
-            const _NextButton(),
-          ]),
-        ));
+    return Column(
+      children: [
+        Expanded(child: Container()),
+        const Text('What is your email address?',
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+        const SizedBox(height: 32),
+        _EmailForm(),
+        const SizedBox(height: 32),
+        const _NextButton(),
+      ],
+    );
   }
 }
 
@@ -42,7 +38,7 @@ class _NextButton extends StatelessWidget {
         return ElevatedButton(
           key: const Key('emailform_next_raisedButton'),
           onPressed: state.email.isValid
-              ? () => Navigator.of(context).push<void>(PasswordForm.route())
+              ? () => context.read<SignUpBloc>().add(const SignUpNextPage())
               : null,
           child: const Text('Continue'),
         );

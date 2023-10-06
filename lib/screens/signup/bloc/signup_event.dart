@@ -43,6 +43,10 @@ final class SignUpAgeChanged extends SignUpEvent {
   List<Object> get props => [age];
 }
 
+final class SignUpNextPage extends SignUpEvent {
+  const SignUpNextPage();
+}
+
 final class SignUpSubmitted extends SignUpEvent {
   const SignUpSubmitted();
 }

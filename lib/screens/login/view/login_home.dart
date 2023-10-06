@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:music_room/screens/login/view/login_page.dart';
-import 'package:music_room/screens/signup/view/email_form.dart';
+import 'package:music_room/screens/signup/view/signup_wrapper.dart';
 
 class LoginHomePage extends StatelessWidget {
   const LoginHomePage({Key? key});
@@ -28,7 +28,7 @@ class LoginHomePage extends StatelessWidget {
             child: Column(children: [
               ElevatedButton(
                   onPressed: () => {
-                        Navigator.of(context).push<void>(EmailForm.route()),
+                        Navigator.of(context).push<void>(SignUpWrapper.route()),
                       },
                   style: ElevatedButton.styleFrom(
                       minimumSize: const Size(double.infinity, 50)),

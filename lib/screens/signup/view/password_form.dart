@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:music_room/common/app_text_field.dart';
-import 'package:music_room/common/common_page.dart';
 import 'package:music_room/screens/signup/bloc/signup_bloc.dart';
-import 'package:music_room/screens/signup/view/username_form.dart';
 
 class PasswordForm extends StatelessWidget {
   const PasswordForm({Key? key}) : super(key: key);
@@ -14,21 +12,15 @@ class PasswordForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => SignUpBloc(),
-      child: CommonPage(
-        appBar: AppBar(title: const Text('Create an account')),
-        body: Column(children: [
-          Expanded(child: Container()),
-          const Text('Type a secret password 🤫',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-          const SizedBox(height: 32),
-          _PasswordForm(),
-          const SizedBox(height: 32),
-          const _NextButton(),
-        ]),
-      ),
-    );
+    return Column(children: [
+      Expanded(child: Container()),
+      const Text('Type a secret password 🤫',
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+      const SizedBox(height: 32),
+      _PasswordForm(),
+      const SizedBox(height: 32),
+      const _NextButton(),
+    ]);
   }
 }
 
@@ -43,7 +35,7 @@ class _NextButton extends StatelessWidget {
         return ElevatedButton(
           key: const Key('Passwordform_next_raisedButton'),
           onPressed: state.password.isValid
-              ? () => Navigator.of(context).push<void>(UsernameForm.route())
+              ? () => context.read<SignUpBloc>().add(const SignUpNextPage())
               : null,
           child: const Text('Continue'),
         );

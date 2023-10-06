@@ -7,6 +7,7 @@ final class SignUpState extends Equatable {
   final Age age;
   final Password password;
   final bool isValid;
+  final int currentPage;
 
   const SignUpState({
     this.status = FormzSubmissionStatus.initial,
@@ -15,6 +16,7 @@ final class SignUpState extends Equatable {
     this.age = const Age.pure(),
     this.password = const Password.pure(),
     this.isValid = false,
+    this.currentPage = 0,
   });
 
   SignUpState copyWith({
@@ -24,6 +26,7 @@ final class SignUpState extends Equatable {
     Password? password,
     Age? age,
     bool? isValid,
+    int? currentPage,
   }) {
     return SignUpState(
       status: status ?? this.status,
@@ -32,6 +35,7 @@ final class SignUpState extends Equatable {
       age: age ?? this.age,
       password: password ?? this.password,
       isValid: isValid ?? this.isValid,
+      currentPage: currentPage ?? this.currentPage,
     );
   }
 
@@ -42,5 +46,19 @@ final class SignUpState extends Equatable {
         username,
         age,
         password,
+        currentPage,
+        isValid,
       ];
+
+  @override
+  String toString() {
+    return '''SignUpState {
+      status: $status,
+      email: ${email.value},
+      username: ${username.value},
+      age: ${age.value},
+      password: ${password.value},
+      isValid: $isValid,      
+    }''';
+  }
 }

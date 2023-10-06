@@ -18,6 +18,7 @@ class UserService {
     required String username,
     required int age,
   }) {
+    print('email: $email, password: $password, username: $username, age: $age');
     return _client.mutate(
       MutationOptions(
         document: gql(r"""
